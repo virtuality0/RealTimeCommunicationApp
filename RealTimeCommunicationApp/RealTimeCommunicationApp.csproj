@@ -11,7 +11,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <Folder Include="DAL\DbContexts\" />
+    <Folder Include="DAL\Entities\" />
   </ItemGroup>
 
 </Project>
