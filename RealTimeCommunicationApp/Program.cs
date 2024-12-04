@@ -1,3 +1,9 @@
+using Microsoft.EntityFrameworkCore;
+using RealTimeCommunicationApp.DAL.DbContexts;
+using RealTimeCommunicationApp.DAL.Entities;
+using RealTimeCommunicationApp.Services.Implementations;
+using RealTimeCommunicationApp.Services.Interfaces;
+using System.Xml;
 
 namespace RealTimeCommunicationApp
 {
@@ -12,6 +18,14 @@ namespace RealTimeCommunicationApp
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+
+            //setting up the DB
+            builder.Services.AddDbContext<ApDbContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("Defaultconnection")));
+
+            //adding DI services 
+            builder.Services.AddScoped<IUnitOfWork<User>, UnitOfWork<User>>();
 
             var app = builder.Build();
 
